@@ -1,0 +1,45 @@
+# Terraform working directories
+**/.terraform/*
+
+# Terraform state
+*.tfstate
+*.tfstate.*
+
+# Crash logs
+crash.log
+crash.*.log
+
+# Variable files that may contain sensitive values
+*.auto.tfvars
+*.auto.tfvars.json
+*.tfvars.secret
+*.tfvars.secret.json
+
+# Terraform plans
+*.tfplan
+tfplan
+
+# Terraform CLI configuration
+.terraformrc
+terraform.rc
+
+# Lock overrides
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Local environment files
+.env
+.env.*
+
+# IDE and operating-system files
+.vscode/
+.idea/
+.DS_Store
+
+# Private keys
+*.pem
+*.key
+id_rsa
+id_ed25519

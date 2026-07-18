@@ -1,0 +1,49 @@
+digraph G {
+  rankdir = "RL";
+  node [shape = rect, fontname = "sans-serif"];
+  subgraph "cluster_module.vpc" {
+    label = "module.vpc"
+    fontname = "sans-serif"
+    "module.vpc.data.aws_iam_policy_document.flow_logs_assume_role" [label="data.aws_iam_policy_document.flow_logs_assume_role"];
+    "module.vpc.data.aws_iam_policy_document.flow_logs_permissions" [label="data.aws_iam_policy_document.flow_logs_permissions"];
+    "module.vpc.aws_cloudwatch_log_group.vpc_flow_logs" [label="aws_cloudwatch_log_group.vpc_flow_logs"];
+    "module.vpc.aws_eip.nat" [label="aws_eip.nat"];
+    "module.vpc.aws_flow_log.this" [label="aws_flow_log.this"];
+    "module.vpc.aws_iam_role.vpc_flow_logs" [label="aws_iam_role.vpc_flow_logs"];
+    "module.vpc.aws_iam_role_policy.vpc_flow_logs" [label="aws_iam_role_policy.vpc_flow_logs"];
+    "module.vpc.aws_internet_gateway.this" [label="aws_internet_gateway.this"];
+    "module.vpc.aws_nat_gateway.this" [label="aws_nat_gateway.this"];
+    "module.vpc.aws_route.private_nat" [label="aws_route.private_nat"];
+    "module.vpc.aws_route.public_internet" [label="aws_route.public_internet"];
+    "module.vpc.aws_route_table.private" [label="aws_route_table.private"];
+    "module.vpc.aws_route_table.public" [label="aws_route_table.public"];
+    "module.vpc.aws_route_table_association.private" [label="aws_route_table_association.private"];
+    "module.vpc.aws_route_table_association.public" [label="aws_route_table_association.public"];
+    "module.vpc.aws_subnet.private" [label="aws_subnet.private"];
+    "module.vpc.aws_subnet.public" [label="aws_subnet.public"];
+    "module.vpc.aws_vpc.this" [label="aws_vpc.this"];
+  }
+  "module.vpc.data.aws_iam_policy_document.flow_logs_permissions" -> "module.vpc.aws_cloudwatch_log_group.vpc_flow_logs";
+  "module.vpc.aws_eip.nat" -> "module.vpc.aws_internet_gateway.this";
+  "module.vpc.aws_flow_log.this" -> "module.vpc.aws_cloudwatch_log_group.vpc_flow_logs";
+  "module.vpc.aws_flow_log.this" -> "module.vpc.aws_iam_role.vpc_flow_logs";
+  "module.vpc.aws_flow_log.this" -> "module.vpc.aws_vpc.this";
+  "module.vpc.aws_iam_role.vpc_flow_logs" -> "module.vpc.data.aws_iam_policy_document.flow_logs_assume_role";
+  "module.vpc.aws_iam_role_policy.vpc_flow_logs" -> "module.vpc.data.aws_iam_policy_document.flow_logs_permissions";
+  "module.vpc.aws_iam_role_policy.vpc_flow_logs" -> "module.vpc.aws_iam_role.vpc_flow_logs";
+  "module.vpc.aws_internet_gateway.this" -> "module.vpc.aws_vpc.this";
+  "module.vpc.aws_nat_gateway.this" -> "module.vpc.aws_eip.nat";
+  "module.vpc.aws_nat_gateway.this" -> "module.vpc.aws_subnet.public";
+  "module.vpc.aws_route.private_nat" -> "module.vpc.aws_nat_gateway.this";
+  "module.vpc.aws_route.private_nat" -> "module.vpc.aws_route_table.private";
+  "module.vpc.aws_route.public_internet" -> "module.vpc.aws_internet_gateway.this";
+  "module.vpc.aws_route.public_internet" -> "module.vpc.aws_route_table.public";
+  "module.vpc.aws_route_table.private" -> "module.vpc.aws_vpc.this";
+  "module.vpc.aws_route_table.public" -> "module.vpc.aws_vpc.this";
+  "module.vpc.aws_route_table_association.private" -> "module.vpc.aws_route_table.private";
+  "module.vpc.aws_route_table_association.private" -> "module.vpc.aws_subnet.private";
+  "module.vpc.aws_route_table_association.public" -> "module.vpc.aws_route_table.public";
+  "module.vpc.aws_route_table_association.public" -> "module.vpc.aws_subnet.public";
+  "module.vpc.aws_subnet.private" -> "module.vpc.aws_vpc.this";
+  "module.vpc.aws_subnet.public" -> "module.vpc.aws_vpc.this";
+}
