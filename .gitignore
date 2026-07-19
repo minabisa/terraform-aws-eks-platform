@@ -43,3 +43,6 @@ override.tf.json
 *.key
 id_rsa
 id_ed25519
+
+# Local backend configuration
+**/backend.hcl
