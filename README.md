@@ -7,8 +7,8 @@ Balancer Controller, ExternalDNS, Prometheus, and Grafana.
 ## Current progress
 
 - [x] Phase 1 — AWS networking foundation
-- [ ] Phase 2 — Remote Terraform state
-- [ ] Phase 3 — IAM and security
+- [x] Phase 2 — Remote Terraform state
+- [x] Phase 3 — IAM and security
 - [ ] Phase 4 — Amazon EKS
 - [ ] Phase 5 — Jenkins CI/CD
 - [ ] Phase 6 — Helm application deployment
@@ -55,3 +55,38 @@ Destroy lab resources when they are no longer required:
 cd environments/dev
 terraform destroy
 
+## Phase 2 — Secure Remote Terraform State
+
+Terraform state is stored securely in Amazon S3 instead of only on the local computer.
+
+The backend configuration includes:
+
+- Dedicated S3 state bucket
+- S3 versioning
+- Server-side encryption
+- Public-access blocking
+- HTTPS-only bucket policy
+- Native Terraform state locking
+- Separate state path for the development environment
+- Protection against accidental bucket deletion
+
+The development state is stored using the following structure:
+
+```text
+s3://terraform-state-bucket/dev/terraform.tfstate
+
+
+## Phase 3 — IAM and EKS Security Foundation
+
+The EKS security foundation includes:
+
+- Dedicated EKS control-plane IAM role
+- Dedicated EKS worker-node IAM role
+- Amazon EKS managed policies
+- Amazon ECR image-pull permissions
+- Customer-managed KMS encryption key
+- Automatic KMS key rotation
+- Separate EKS cluster and node security groups
+- Restricted communication between the control plane and worker nodes
+- No publicly exposed SSH access
+- VPC CNI permissions separated from the worker-node role
