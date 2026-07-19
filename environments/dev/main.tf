@@ -22,3 +22,26 @@ module "vpc" {
     CostCenter = "DevOps-Lab"
   }
 }
+
+module "eks_security" {
+  source = "../../modules/eks-security"
+
+  project_name = var.project_name
+  environment  = var.environment
+  cluster_name = var.cluster_name
+
+  vpc_id               = module.vpc.vpc_id
+  vpc_cidr_block       = module.vpc.vpc_cidr_block
+  private_subnet_cidrs = module.vpc.private_subnet_cidrs
+
+  enable_kms_key_rotation      = true
+  kms_key_deletion_window_days = 30
+
+  # The VPC CNI will receive its own role during cluster/add-on creation.
+  attach_vpc_cni_policy_to_node_role = false
+
+  additional_tags = {
+    Owner      = "Mina-Bisa"
+    CostCenter = "DevOps-Lab"
+  }
+}
