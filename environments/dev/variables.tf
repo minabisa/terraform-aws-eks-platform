@@ -53,3 +53,57 @@ variable "enable_flow_logs" {
   type        = bool
   default     = true
 }
+variable "kubernetes_version" {
+  description = "Kubernetes version used by the EKS cluster."
+  type        = string
+  default     = "1.35"
+}
+
+variable "eks_public_access_cidrs" {
+  description = "CIDR ranges allowed to access the public EKS API endpoint."
+  type        = list(string)
+  default     = ["0.0.0.0/0"]
+}
+
+variable "eks_node_instance_types" {
+  description = "EC2 instance types used by the EKS node group."
+  type        = list(string)
+  default     = ["t3.micro"]
+}
+
+variable "eks_node_capacity_type" {
+  description = "EKS node-group capacity type."
+  type        = string
+  default     = "ON_DEMAND"
+}
+
+variable "eks_node_desired_size" {
+  description = "Desired number of EKS worker nodes."
+  type        = number
+  default     = 1
+}
+
+variable "eks_node_min_size" {
+  description = "Minimum number of EKS worker nodes."
+  type        = number
+  default     = 1
+}
+
+variable "eks_node_max_size" {
+  description = "Maximum number of EKS worker nodes."
+  type        = number
+  default     = 3
+}
+
+variable "eks_node_disk_size" {
+  description = "Worker-node root volume size in GiB."
+  type        = number
+  default     = 30
+}
+
+variable "eks_admin_principal_arn" {
+  description = "Optional stable IAM user or role ARN granted EKS administrator access."
+  type        = string
+  default     = null
+  nullable    = true
+}

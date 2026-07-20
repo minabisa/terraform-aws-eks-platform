@@ -52,3 +52,47 @@ output "eks_node_security_group_id" {
   description = "EKS worker-node security group ID."
   value       = module.eks_security.node_security_group_id
 }
+output "eks_cluster_name" {
+  description = "Name of the EKS cluster."
+  value       = module.eks.cluster_name
+}
+
+output "eks_cluster_arn" {
+  description = "ARN of the EKS cluster."
+  value       = module.eks.cluster_arn
+}
+
+output "eks_cluster_endpoint" {
+  description = "Kubernetes API endpoint."
+  value       = module.eks.cluster_endpoint
+}
+
+output "eks_cluster_version" {
+  description = "Kubernetes version used by the cluster."
+  value       = module.eks.cluster_version
+}
+
+output "eks_primary_security_group_id" {
+  description = "Primary security group automatically created by Amazon EKS."
+  value       = module.eks.cluster_primary_security_group_id
+}
+
+output "eks_oidc_provider_arn" {
+  description = "IAM OIDC provider ARN for the EKS cluster."
+  value       = module.eks.oidc_provider_arn
+}
+
+output "eks_vpc_cni_role_arn" {
+  description = "IAM role used by the VPC CNI service account."
+  value       = module.eks.vpc_cni_role_arn
+}
+
+output "eks_node_group_name" {
+  description = "Name of the EKS managed node group."
+  value       = module.eks.node_group_name
+}
+
+output "eks_node_group_status" {
+  description = "Status of the EKS managed node group."
+  value       = module.eks.node_group_status
+}

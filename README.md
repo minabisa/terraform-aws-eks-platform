@@ -9,7 +9,7 @@ Balancer Controller, ExternalDNS, Prometheus, and Grafana.
 - [x] Phase 1 — AWS networking foundation
 - [x] Phase 2 — Remote Terraform state
 - [x] Phase 3 — IAM and security
-- [ ] Phase 4 — Amazon EKS
+- [x] Phase 4 — Amazon EKS
 - [ ] Phase 5 — Jenkins CI/CD
 - [ ] Phase 6 — Helm application deployment
 - [ ] Phase 7 — Argo CD GitOps
@@ -90,3 +90,24 @@ The EKS security foundation includes:
 - Restricted communication between the control plane and worker nodes
 - No publicly exposed SSH access
 - VPC CNI permissions separated from the worker-node role
+
+## Phase 4 — Amazon EKS Cluster
+
+The Kubernetes platform includes:
+
+- Amazon EKS managed control plane
+- Worker nodes deployed in private subnets
+- Amazon EKS managed node group
+- Amazon Linux 2023 optimized worker-node AMIs
+- Encrypted GP3 worker-node volumes
+- IMDSv2 enforcement
+- Customer-managed KMS integration
+- EKS control-plane logging
+- EKS API access entries
+- IAM OIDC provider
+- Dedicated VPC CNI IAM role
+- Amazon VPC CNI managed add-on
+- CoreDNS managed add-on
+- kube-proxy managed add-on
+- Public and private API endpoint access
+- No publicly exposed worker-node SSH access

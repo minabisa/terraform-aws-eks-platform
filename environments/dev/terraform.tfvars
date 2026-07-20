@@ -22,3 +22,21 @@ private_subnet_cidrs = [
 
 single_nat_gateway = true
 enable_flow_logs   = true
+kubernetes_version = "1.35"
+
+eks_public_access_cidrs = [
+  "73.160.203.0/24"
+]
+
+eks_node_instance_types = [
+  "t3.micro"
+]
+
+eks_node_capacity_type = "ON_DEMAND"
+
+eks_node_desired_size = 1
+eks_node_min_size     = 1
+eks_node_max_size     = 2
+eks_node_disk_size    = 30
+
+eks_admin_principal_arn = null
