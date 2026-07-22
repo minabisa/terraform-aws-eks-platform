@@ -23,15 +23,7 @@ variable "vpc_id" {
   type        = string
 }
 
-variable "vpc_cidr_block" {
-  description = "CIDR block of the EKS VPC."
-  type        = string
-}
 
-variable "private_subnet_cidrs" {
-  description = "CIDR blocks of private subnets used by worker nodes."
-  type        = list(string)
-}
 
 variable "kms_key_deletion_window_days" {
   description = "Waiting period before deleting the EKS KMS key."
