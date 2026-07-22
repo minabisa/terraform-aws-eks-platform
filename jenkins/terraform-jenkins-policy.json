@@ -1,0 +1,19 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "TerraformProjectAccess",
+      "Effect": "Allow",
+      "Action": [
+        "ec2:*",
+        "eks:*",
+        "iam:*",
+        "kms:*",
+        "logs:*",
+        "s3:*",
+        "autoscaling:*"
+      ],
+      "Resource": "*"
+    }
+  ]
+}

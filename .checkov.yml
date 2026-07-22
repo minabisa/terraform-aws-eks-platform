@@ -1,0 +1,13 @@
+framework:
+  - terraform
+
+quiet: true
+compact: true
+
+download-external-modules: false
+
+soft-fail: true
+
+skip-check:
+  # The development API endpoint is temporarily public but CIDR-restricted.
+  - CKV_AWS_39
