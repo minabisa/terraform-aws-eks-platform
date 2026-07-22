@@ -30,9 +30,7 @@ module "eks_security" {
   environment  = var.environment
   cluster_name = var.cluster_name
 
-  vpc_id               = module.vpc.vpc_id
-  vpc_cidr_block       = module.vpc.vpc_cidr_block
-  private_subnet_cidrs = module.vpc.private_subnet_cidrs
+  vpc_id = module.vpc.vpc_id
 
   enable_kms_key_rotation      = true
   kms_key_deletion_window_days = 30
