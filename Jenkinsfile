@@ -155,13 +155,14 @@ BACKEND
             }
 
             post {
-                always {
-                    junit(
-                        allowEmptyResults: true,
-                        testResults: 'checkov-report.xml'
-                    )
-                }
-            }
+    always {
+        junit(
+            allowEmptyResults: true,
+            skipMarkingBuildUnstable: true,
+            testResults: 'checkov-report.xml'
+        )
+    }
+}
         }
 
         stage('Terraform Plan') {
